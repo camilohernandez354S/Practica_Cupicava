@@ -232,6 +232,7 @@ public class Vino
     public int compararPorNombre( Vino pVino )
     {
     	 // TODO Parte2 PuntoA: Implemente el método según la documentación dada.
+    	return nombre.compareToIgnoreCase(pVino.darNombre());
     }
 
     /**
@@ -244,6 +245,7 @@ public class Vino
     public int compararPorPresentacion( Vino pVino )
     {
    	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
+    	return presentacion.compareToIgnoreCase(pVino.darPresentacion());
    }
 
     /**
@@ -256,6 +258,7 @@ public class Vino
     public int compararPorAnhoElaboracion( Vino pVino )
     {
    	 // TODO Parte2 PuntoC: Implemente el método según la documentación dada.
+    	return Integer.compare(anhoElaboracion, pVino.darAnhoElaboracion());
    }
 
     /**
@@ -268,6 +271,7 @@ public class Vino
     public int compararPorContenidoAzucar( Vino pVino )
     {
    	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
+    	return Double.compare(contenidoAzucar, pVino.darContenidoAzucar());
    }
 
     /**
@@ -280,6 +284,7 @@ public class Vino
     public int compararPorTipo( Vino pVino )
     {
    	 // TODO Parte2 PuntoE: Implemente el método según la documentación dada.
+    	return tipo.compareToIgnoreCase(pVino.darTipo());
    }
 
     /**
@@ -292,6 +297,7 @@ public class Vino
     public int compararPorColor( Vino pVino )
     {
    	 // TODO Parte2 PuntoF: Implemente el método según la documentación dada.
+    	return color.compareToIgnoreCase(pVino.darColor());
     }
 
     /**
@@ -304,6 +310,7 @@ public class Vino
     public int compararPorLugarOrigen( Vino pVino )
     {
    	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
+    	return lugarOrigen.compareToIgnoreCase(pVino.darLugarOrigen());
    }
 
     /**
