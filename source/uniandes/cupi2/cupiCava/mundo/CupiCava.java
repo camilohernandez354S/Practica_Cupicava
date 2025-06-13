@@ -244,6 +244,16 @@ public class CupiCava
     public void ordenarVinosPorLugarOrigen( )
     {
    	 // TODO Parte2 PuntoN: Implemente el método según la documentación dada.
+    	for (int i = 1; i < vinos.size(); i++) {
+            Vino actual = vinos.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && vinos.get(j).darLugarOrigen().compareToIgnoreCase(actual.darLugarOrigen()) > 0) {
+                vinos.set(j + 1, vinos.get(j));
+                j--;
+            }
+            vinos.set(j + 1, actual);
+        }
    }
 
     // -----------------------------------------------------------------
