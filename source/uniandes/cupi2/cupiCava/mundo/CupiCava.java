@@ -223,6 +223,17 @@ public class CupiCava
     public void ordenarVinosPorAnhoElaboracion( )
     {
    	 // TODO Parte2 PuntoM: Implemente el método según la documentación dada.
+    	for (int i = 0; i < vinos.size() - 1; i++) {
+            int max = i;
+            for (int j = i + 1; j < vinos.size(); j++) {
+                if (vinos.get(j).darAnhoElaboracion() > vinos.get(max).darAnhoElaboracion()) {
+                    max = j;
+                }
+            }
+            Vino temp = vinos.get(i);
+            vinos.set(i, vinos.get(max));
+            vinos.set(max, temp);
+        }
    }
 
     /**
