@@ -87,6 +87,23 @@ public class CupiCava
     public Vino buscarBinarioPorNombre( String pNombre )
     {
    	 // TODO Parte2 PuntoH: Implemente el método según la documentación dada.
+    	int inicio = 0;
+        int fin = vinos.size() - 1;
+
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            Vino vinoMedio = vinos.get(medio);
+            int comparacion = vinoMedio.darNombre().compareToIgnoreCase(pNombre);
+
+            if (comparacion == 0)
+                return vinoMedio;
+            else if (comparacion < 0)
+                inicio = medio + 1;
+            else
+                fin = medio - 1;
+        }
+
+        return null;
     }
 
     /**
@@ -98,6 +115,15 @@ public class CupiCava
     public Vino buscarVinoMasDulce( )
     {
    	 // TODO Parte2 PuntoI: Implemente el método según la documentación dada.
+    	if (vinos.isEmpty())
+            return null;
+
+        Vino masDulce = vinos.get(0);
+        for (Vino vino : vinos) {
+            if (vino.darContenidoAzucar() > masDulce.darContenidoAzucar())
+                masDulce = vino;
+        }
+        return masDulce;
     }
 
     /**
@@ -109,6 +135,15 @@ public class CupiCava
     public Vino buscarVinoMasSeco( )
     {
    	 // TODO Parte2 PuntoJ: Implemente el método según la documentación dada.
+    	if (vinos.isEmpty())
+            return null;
+
+        Vino masSeco = vinos.get(0);
+        for (Vino vino : vinos) {
+            if (vino.darContenidoAzucar() < masSeco.darContenidoAzucar())
+                masSeco = vino;
+        }
+        return masSeco;
    }
 
     /**
@@ -121,6 +156,13 @@ public class CupiCava
     public ArrayList<Vino> buscarVinosDeTipo( String pTipo )
     {
    	 // TODO Parte2 PuntoK: Implemente el método según la documentación dada.
+    	 ArrayList<Vino> resultado = new ArrayList<>();
+    	    for (Vino vino : vinos) {
+    	        if (vino.darTipo().equalsIgnoreCase(pTipo)) {
+    	            resultado.add(vino);
+    	        }
+    	    }
+    	    return resultado;
    }
 
     /**
@@ -161,6 +203,16 @@ public class CupiCava
     public void ordenarVinosPorNombre( )
     {
    	 // TODO Parte2 PuntoL: Implemente el método según la documentación dada.
+    	for (int i = 0; i < vinos.size() - 1; i++) {
+            for (int j = 0; j < vinos.size() - 1 - i; j++) {
+                Vino v1 = vinos.get(j);
+                Vino v2 = vinos.get(j + 1);
+                if (v1.darNombre().compareToIgnoreCase(v2.darNombre()) > 0) {
+                    vinos.set(j, v2);
+                    vinos.set(j + 1, v1);
+                }
+            }
+        }
    }
 
     /**
@@ -171,6 +223,17 @@ public class CupiCava
     public void ordenarVinosPorAnhoElaboracion( )
     {
    	 // TODO Parte2 PuntoM: Implemente el método según la documentación dada.
+    	for (int i = 0; i < vinos.size() - 1; i++) {
+            int max = i;
+            for (int j = i + 1; j < vinos.size(); j++) {
+                if (vinos.get(j).darAnhoElaboracion() > vinos.get(max).darAnhoElaboracion()) {
+                    max = j;
+                }
+            }
+            Vino temp = vinos.get(i);
+            vinos.set(i, vinos.get(max));
+            vinos.set(max, temp);
+        }
    }
 
     /**
@@ -181,6 +244,16 @@ public class CupiCava
     public void ordenarVinosPorLugarOrigen( )
     {
    	 // TODO Parte2 PuntoN: Implemente el método según la documentación dada.
+    	for (int i = 1; i < vinos.size(); i++) {
+            Vino actual = vinos.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && vinos.get(j).darLugarOrigen().compareToIgnoreCase(actual.darLugarOrigen()) > 0) {
+                vinos.set(j + 1, vinos.get(j));
+                j--;
+            }
+            vinos.set(j + 1, actual);
+        }
    }
 
     // -----------------------------------------------------------------
