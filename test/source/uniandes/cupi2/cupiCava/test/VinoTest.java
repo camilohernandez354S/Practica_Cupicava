@@ -113,9 +113,10 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al nombre.<br>
      * 2. El vino1 es menor al vino2 con respecto al nombre.<br>
      * 3. El vino3 es mayor al vino2 con respecto al nombre.
+     * @throws Exception 
      */
     @Test
-    public void testCompararPorNombre( )
+    public void testCompararPorNombre( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los nombres son iguales.", 0, vino1.compararPorNombre( vino4 ) );
@@ -131,8 +132,9 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto a la presentación.<br>
      * 2. El vino1 es menor al vino2 con respecto a la presentación.<br>
      * 3. El vino3 es igual al vino1 con respecto a la presentación.
+     * @throws Exception 
      */
-    public void testCompararPorPresentacion( )
+    public void testCompararPorPresentacion( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque las presentaciones son iguales.", 0, vino1.compararPorPresentacion( vino4 ) );
@@ -148,8 +150,9 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al año de elaboración.<br>
      * 2. El vino1 es menor al vino2 con respecto al año de elaboración.<br>
      * 3. El vino3 es igual al vino1 con respecto al año de elaboración.
+     * @throws Exception 
      */
-    public void testCompararPorAnhoElaboracion( )
+    public void testCompararPorAnhoElaboracion( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los años de elaboración son iguales.", 0, vino1.compararPorAnhoElaboracion( vino4 ) );
@@ -165,8 +168,9 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al contenido en azúcar.<br>
      * 2. El vino1 es menor al vino2 con respecto al contenido en azúcar.<br>
      * 3. El vino3 es igual al vino1 con respecto al contenido en azúcar.
+     * @throws Exception 
      */
-    public void testCompararPorContenidoAzucar( )
+    public void testCompararPorContenidoAzucar( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los contenidos en azúcar son iguales.", 0, vino1.compararPorContenidoAzucar( vino4 ) );
@@ -182,8 +186,9 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al tipo.<br>
      * 2. El vino1 es menor al vino2 con respecto al tipo.<br>
      * 3. El vino3 es igual al vino1 con respecto al tipo.
+     * @throws Exception 
      */
-    public void testCompararPorTipo( )
+    public void testCompararPorTipo( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los tipos son iguales.", 0, vino1.compararPorTipo( vino4 ) );
@@ -200,9 +205,11 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto al color.<br>
      * 3. El vino3 es igual al vino1 con respecto al color.
      */
-    public void testCompararPorColor( )
+    public void testCompararPorColor( ) throws Exception
     {
-   	 // TODO Parte2 PuntoO: Implemente el método para que cumpla los casos de prueba
+        assertEquals( "La comparación debería tener como resultado 0 porque los colores son iguales.", 0, vino1.compararPorTipo( vino4 ) );
+        assertEquals( "La comparación debería tener como resultado -1 porque el vino1 es menor a vino2.", -1, vino1.compararPorTipo( vino2 ) );
+        assertEquals( "La comparación debería tener como resultado 1 porque el vino3 es mayor a vino1.", 1, vino3.compararPorTipo( vino1 ) );
    }
 
     /**
@@ -214,8 +221,10 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto al lugar de origen.<br>
      * 3. El vino3 es igual al vino1 con respecto al lugar de origen.
      */
-    public void testCompararPorLugarOrigen( )
+    public void testCompararPorLugarOrigen( ) throws Exception
     {
-   	 // TODO Parte2 PuntoP: Implemente el método para que cumpla los casos de prueba
+        assertEquals( "La comparación debería tener como resultado 0 porque los lugares de origen son imguales.", 0, vino1.compararPorTipo( vino4 ) );
+        assertEquals( "La comparación debería tener como resultado -1 porque el vino1 es menor a vino2.", -1, vino1.compararPorTipo( vino2 ) );
+        assertEquals( "La comparación debería tener como resultado 1 porque el vino3 es mayor a vino1.", 1, vino3.compararPorTipo( vino1 ) );
    }
 }

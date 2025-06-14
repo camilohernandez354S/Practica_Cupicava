@@ -203,13 +203,20 @@ public class CupiCavaTest
      * 1. Los vinos no están ordenados.<br>
      */
     @Test
-    public void testOrdenarVinosPorNombre( )
+    public void testOrdenarVinosPorNombre( ) throws Exception
     {
         setupEscenario3( );
-
         
-       	 // TODO Parte2 PuntoQ: Implemente el método para que cumpla los casos de prueba
-       
+        cupiCava.ordenarVinosPorNombre();
+        
+        ArrayList<Vino> vinosOrdenados = cupiCava.darVinos();
+        
+        for (int i = 0; i < vinosOrdenados.size() - 1; i++) {
+        	Vino actual = vinosOrdenados.get(i);
+        	Vino siguiente = vinosOrdenados.get(i + 1);
+        	
+        	assertTrue("Los vinos no estan ordenados correctamente", actual.compareTo(siguiente.darNombre()) <= 0);
+        }
     }
 
     /**
@@ -222,11 +229,20 @@ public class CupiCavaTest
      * 1. Los vinos no están ordenados.<br>
      */
     @Test
-    public void testOrdenarPorAnhoElaboracion( )
+    public void testOrdenarPorAnhoElaboracion( ) throws Exception
     {
         setupEscenario3( );
-
-        // TODO Parte2 PuntoR: Implemente el método para que cumpla los casos de prueba
+        
+        cupiCava.ordenarVinosPorAnhoElaboracion();
+        
+        ArrayList<Vino> vinosOrdenados = cupiCava.darVinos();
+        
+        for (int i = 0; i < vinosOrdenados.size() - 1; i++) {
+        	Vino actual = vinosOrdenados.get(i);
+        	Vino siguiente = vinosOrdenados.get(i + 1);
+        	
+        	assertTrue("Los vinos no estan ordenados correctamente", actual.darAnhoElaboracion() >= siguiente.darAnhoElaboracion());
+        }
     }
 
     /**
@@ -242,8 +258,17 @@ public class CupiCavaTest
     public void testOrdenarVinosPorLugarOrigen( )
     {
         setupEscenario3( );
-
-        // TODO Parte2 PuntoS: Implemente el método para que cumpla los casos de prueba
+        
+        cupiCava.ordenarVinosPorLugarOrigen();
+        
+        ArrayList<Vino> vinosOrdenados = cupiCava.darVinos();
+        
+        for (int i = 0; i < vinosOrdenados.size() - 1; i++) {
+        	Vino actual = vinosOrdenados.get(i);
+        	Vino siguiente = vinosOrdenados.get(i + 1);
+        	
+        	assertTrue("Los vinos no estan ordenados correctamente", actual.compareToOrigen(siguiente.darLugarOrigen()) <= 0);
+        }
     }
 
     /**
@@ -257,7 +282,7 @@ public class CupiCavaTest
      * 2. El vino no existe.<br>
      */
     @Test
-    public void testBuscarBinarioPorNombre( )
+    public void testBuscarBinarioPorNombre( ) throws Exception
     {
         setupEscenario3( );
 
@@ -277,7 +302,7 @@ public class CupiCavaTest
      * 1. El vino más dulce existe.<br>
      */
     @Test
-    public void testBuscarVinoMasDulce( )
+    public void testBuscarVinoMasDulce( ) throws Exception
     {
         setupEscenario3( );
 
@@ -296,7 +321,7 @@ public class CupiCavaTest
      * 1. El vino más seco existe.<br>
      */
     @Test
-    public void testBuscarVinoMasSeco( )
+    public void testBuscarVinoMasSeco( ) throws Exception
     {
         setupEscenario3( );
 
@@ -314,7 +339,7 @@ public class CupiCavaTest
      * 1. Existen vinos con el tipo dado.<br>
      */
     @Test
-    public void testBuscarVinosDeTipo( )
+    public void testBuscarVinosDeTipo( ) throws Exception
     {
         setupEscenario3( );
 
