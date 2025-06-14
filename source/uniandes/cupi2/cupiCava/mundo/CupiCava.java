@@ -15,8 +15,10 @@ import java.util.ArrayList;
 /**
  * Clase que representa la Cupi-Cava. <br>
  * <b>inv: </b> <br>
- * TODO Parte1 PuntoC: Declare la invariante de la clase.
+ * - La lista de vinos (vinos) no es null.<br>
+ * - Ningún elemento de la lista de vinos es null.<br>
  */
+
 public class CupiCava
 {
     // -------------------------------------------------------------
@@ -39,6 +41,7 @@ public class CupiCava
     public CupiCava( )
     {
         vinos = new ArrayList<Vino>( );
+        verificarInvariante();
     }
 
     // -------------------------------------------------------------
@@ -84,26 +87,34 @@ public class CupiCava
      * @param pNombre Nombre del vino que se va a buscar. pNombre != null && pNombre != "".
      * @return Vino con el nombre dado, null en caso de no encontrarlo.
      */
-    public Vino buscarBinarioPorNombre( String pNombre )
+    public Vino buscarBinarioPorNombre( String pNombre ) throws Exception
     {
-   	 // TODO Parte2 PuntoH: Implemente el método según la documentación dada.
-    	int inicio = 0;
-        int fin = vinos.size() - 1;
-
-        while (inicio <= fin) {
-            int medio = (inicio + fin) / 2;
-            Vino vinoMedio = vinos.get(medio);
-            int comparacion = vinoMedio.darNombre().compareToIgnoreCase(pNombre);
-
-            if (comparacion == 0)
-                return vinoMedio;
-            else if (comparacion < 0)
-                inicio = medio + 1;
-            else
-                fin = medio - 1;
-        }
-
-        return null;
+    	if (pNombre == null) {
+    		throw new Exception("No se ingreso el nombre");
+    	}
+    	try {
+    		int izquierda = 0;
+    		int derecha = vinos.size() - 1;
+    		while(izquierda <= derecha) {
+    			int valorMedio = izquierda + (derecha -izquierda) / 2;
+    			
+    			Vino vino = vinos.get(valorMedio);
+    			
+    			int comparacion = pNombre.compareTo(vino.darNombre());
+    			
+    			if (comparacion == 0) {
+    				return vino;
+    			} else if (comparacion < 0) {
+    				derecha = valorMedio - 1;
+    			} else {
+    				izquierda = valorMedio + 1;
+    			}
+    		}
+    		return null;
+    		
+    	} catch (Exception e) {
+    		throw new Exception("Error al buscar binario por nombre");
+    	}
     }
 
     /**
@@ -112,18 +123,22 @@ public class CupiCava
      * @return Vino más dulce de la cava. Si la cava no tiene vinos se retorna null. Si existen varios vinos con el contenido en azúcar más alto, se retorna el primer vino
      *         encontrado.
      */
-    public Vino buscarVinoMasDulce( )
+    public Vino buscarVinoMasDulce( ) throws Exception
     {
-   	 // TODO Parte2 PuntoI: Implemente el método según la documentación dada.
-    	if (vinos.isEmpty())
-            return null;
-
-        Vino masDulce = vinos.get(0);
-        for (Vino vino : vinos) {
-            if (vino.darContenidoAzucar() > masDulce.darContenidoAzucar())
-                masDulce = vino;
-        }
-        return masDulce;
+    	if (vinos.size() == 0) {
+    		return null;
+    	}
+    	try {
+    		Vino vinoMasDulce = vinos.get(0);
+    		for (Vino vino : vinos) {
+    			if (vino.darContenidoAzucar() > vinoMasDulce.darContenidoAzucar()) {
+    				vinoMasDulce = vino;
+    			}
+    		}
+    		return vinoMasDulce;
+    	} catch (Exception e) {
+    		throw new Exception("Error al buscar el vino mas dulce");
+    	}
     }
 
     /**
@@ -132,18 +147,22 @@ public class CupiCava
      * @return Vino más seco de la cava. Si la cava no tiene vinos se retorna null. Si existen varios vinos con el contenido en azúcar más bajo, se retorna el primer vino
      *         encontrado.
      */
-    public Vino buscarVinoMasSeco( )
+    public Vino buscarVinoMasSeco( ) throws Exception
     {
-   	 // TODO Parte2 PuntoJ: Implemente el método según la documentación dada.
-    	if (vinos.isEmpty())
-            return null;
-
-        Vino masSeco = vinos.get(0);
-        for (Vino vino : vinos) {
-            if (vino.darContenidoAzucar() < masSeco.darContenidoAzucar())
-                masSeco = vino;
-        }
-        return masSeco;
+    	if (vinos.size() == 0) {
+    		return null;
+    	}
+    	try {
+    		Vino vinoMasSeco = vinos.get(0);
+    		for (Vino vino : vinos) {
+    			if (vino.darContenidoAzucar() < vinoMasSeco.darContenidoAzucar()) {
+    				vinoMasSeco = vino;
+    			}
+    		}
+    		return vinoMasSeco;
+    	} catch (Exception e) {
+    		throw new Exception("Error al buscar el vino mas seco");
+    	}
    }
 
     /**
@@ -153,17 +172,22 @@ public class CupiCava
      *        SEMI_DULCE || pTipo == DULCE).
      * @return Lista de vinos del tipo dado.
      */
-    public ArrayList<Vino> buscarVinosDeTipo( String pTipo )
-    {
-   	 // TODO Parte2 PuntoK: Implemente el método según la documentación dada.
-    	 ArrayList<Vino> resultado = new ArrayList<>();
-    	    for (Vino vino : vinos) {
-    	        if (vino.darTipo().equalsIgnoreCase(pTipo)) {
-    	            resultado.add(vino);
-    	        }
-    	    }
-    	    return resultado;
-   }
+    public ArrayList<Vino> buscarVinosDeTipo(String pTipo) throws Exception 
+	{
+	    if (pTipo == null) {
+	        throw new Exception("El tipo de vino no puede ser nulo o vacío");
+	    }
+
+	    ArrayList<Vino> vinosTipo = new ArrayList<>();
+
+	    for (Vino vino : vinos) {
+	        if (vino.darTipo().equals(pTipo)) {
+	            vinosTipo.add(vino);
+	        }
+	    }
+
+	    return vinosTipo;
+	}
 
     /**
      * Agrega un nuevo vino a la cava si no existe actualmente un vino en la cava con el mismo nombre.<br>
@@ -200,20 +224,32 @@ public class CupiCava
      * <b>pre:</b> La lista de vinos está inicializada. <br>
      * <b>post:</b> La lista de vinos está ordenada por nombre (orden ascendente).
      */
-    public void ordenarVinosPorNombre( )
-    {
-   	 // TODO Parte2 PuntoL: Implemente el método según la documentación dada.
-    	for (int i = 0; i < vinos.size() - 1; i++) {
-            for (int j = 0; j < vinos.size() - 1 - i; j++) {
-                Vino v1 = vinos.get(j);
-                Vino v2 = vinos.get(j + 1);
-                if (v1.darNombre().compareToIgnoreCase(v2.darNombre()) > 0) {
-                    vinos.set(j, v2);
-                    vinos.set(j + 1, v1);
+    public void ordenarVinosPorNombre() throws Exception {
+        if (vinos == null) {
+            throw new Exception("La lista de vinos no ha sido inicializada.");
+        }
+
+        int tamanoListaVinos = vinos.size();
+        boolean intercambio;
+
+        for (int i = 0; i < tamanoListaVinos - 1; i++) {
+            intercambio = false;
+            for (int j = 0; j < tamanoListaVinos - 1 - i; j++) {
+                String nombreActual = vinos.get(j).darNombre();
+                String nombreSiguiente = vinos.get(j + 1).darNombre();
+
+                if (nombreActual.compareTo(nombreSiguiente) > 0) {
+                    Vino vinoTemporal = vinos.get(j);
+                    vinos.set(j, vinos.get(j + 1));
+                    vinos.set(j + 1, vinoTemporal);
+                    intercambio = true;
                 }
             }
+            if (!intercambio) {
+                break;
+            }
         }
-   }
+    }
 
     /**
      * Ordena descendentemente la lista de vinos por año de elaboración usando el algoritmo de selección. <br>
@@ -222,18 +258,23 @@ public class CupiCava
      */
     public void ordenarVinosPorAnhoElaboracion( )
     {
-   	 // TODO Parte2 PuntoM: Implemente el método según la documentación dada.
-    	for (int i = 0; i < vinos.size() - 1; i++) {
-            int max = i;
-            for (int j = i + 1; j < vinos.size(); j++) {
-                if (vinos.get(j).darAnhoElaboracion() > vinos.get(max).darAnhoElaboracion()) {
-                    max = j;
-                }
-            }
-            Vino temp = vinos.get(i);
-            vinos.set(i, vinos.get(max));
-            vinos.set(max, temp);
-        }
+    	int longList = vinos.size();
+    	
+    	for (int i = 0; i < longList - 1; i++ ) {
+    		int indiceMaximo = i;
+    		for (int j = i + 1; j < longList; j++) {
+    			if(vinos.get(j).darAnhoElaboracion() > vinos.get(indiceMaximo).darAnhoElaboracion()) {
+    				indiceMaximo = j;
+    			}
+    		}
+    		if (indiceMaximo != i) {
+    			Vino vinoAux = vinos.get(i);
+    			
+    			vinos.set(i, vinos.get(indiceMaximo));
+    			
+    			vinos.set(indiceMaximo, vinoAux);
+    		}
+    	}
    }
 
     /**
@@ -243,24 +284,32 @@ public class CupiCava
      */
     public void ordenarVinosPorLugarOrigen( )
     {
-   	 // TODO Parte2 PuntoN: Implemente el método según la documentación dada.
-    	for (int i = 1; i < vinos.size(); i++) {
-            Vino actual = vinos.get(i);
-            int j = i - 1;
-
-            while (j >= 0 && vinos.get(j).darLugarOrigen().compareToIgnoreCase(actual.darLugarOrigen()) > 0) {
-                vinos.set(j + 1, vinos.get(j));
-                j--;
-            }
-            vinos.set(j + 1, actual);
-        }
+    	int longVinos = vinos.size();
+    	
+    	for ( int i = 1; i < longVinos; i++) {
+    		Vino vinoKey = vinos.get(i);
+    		
+    		int j = i - 1;
+    		
+    		while (j >= 0 && vinos.get(j).darLugarOrigen().compareTo(vinoKey.darLugarOrigen()) > 0) {
+    			vinos.set(j + 1, vinos.get(j));
+    			j = j - 1;
+    		}
+    		vinos.set(j + 1, vinoKey);
+    	}
+    	
    }
 
     // -----------------------------------------------------------------
     // Invariante
     // -----------------------------------------------------------------
 
-    // TODO Parte1 PuntoD: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
+    private void verificarInvariante() {
+        assert vinos != null : "La lista de vinos no puede ser null";
+        for (Vino v : vinos) {
+            assert v != null : "La lista de vinos contiene un vino null";
+        }
+    }
 
     // -----------------------------------------------------------------
     // Puntos de Extensión
