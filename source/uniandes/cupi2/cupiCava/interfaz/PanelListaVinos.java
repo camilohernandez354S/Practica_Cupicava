@@ -126,17 +126,11 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      */
     public void refrescarLista( ArrayList<String> pListaVinos )
     {
-        // Limpiar el modelo actual
         modeloListaVinos.clear();
-        // Añadir todos los elementos de la lista recibida al modelo
         for (Object vino : pListaVinos) {
-            // Se asume que los objetos en pListaVinos tienen un método toString adecuado
-            // o que necesitas castearlos a la clase Vino y obtener su nombre/representación.
-            // Para simplificar, asumimos que ya son Strings o se pueden convertir directamente.
             modeloListaVinos.addElement(vino.toString()); 
         }
         
-        // Si la lista no está vacía, seleccionar el primer elemento.
         if( !pListaVinos.isEmpty( ) )
         {
             listaVinos.setSelectedIndex( 0 );
@@ -150,14 +144,13 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     public void seleccionar( String nombreVino )
     {
         int indice = -1;
-        // Iterar sobre el modelo de la lista para encontrar el índice
         for( int i = 0; i < modeloListaVinos.getSize( ); i++ )
         {
             String vinoActual = modeloListaVinos.getElementAt( i );
             if( vinoActual.equals( nombreVino ) )
             {
                 indice = i;
-                break; // Encontrado, salir del bucle
+                break;
             }
         }
 
