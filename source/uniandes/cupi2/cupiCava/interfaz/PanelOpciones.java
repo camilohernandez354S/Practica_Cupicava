@@ -29,6 +29,13 @@ public class PanelOpciones extends JPanel implements ActionListener
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 
     /**
      * Constante que representa el comando de ordenar.
@@ -91,12 +98,12 @@ public class PanelOpciones extends JPanel implements ActionListener
     /**
      * Combo box con las opciones de ordenamiento.
      */
-    private JComboBox comboOrdenamiento;
+    private JComboBox<String> comboOrdenamiento;
 
     /**
      * Combo box con las opciones de búsqueda.
      */
-    private JComboBox comboBusqueda;
+    private JComboBox<String> comboBusqueda;
 
     /**
      * Botón para ordenar.
@@ -126,7 +133,7 @@ public class PanelOpciones extends JPanel implements ActionListener
         aux.setLayout( new GridLayout( 1, 2 ) );
         aux.setBorder( new CompoundBorder( new EmptyBorder( 0, 10, 0, 10 ), new TitledBorder( "Ordenar" ) ) );
 
-        comboOrdenamiento = new JComboBox( );
+        comboOrdenamiento = new JComboBox<String>( );
         comboOrdenamiento.setBorder( new EmptyBorder( 0, 0, 0, 10 ) );
         comboOrdenamiento.addItem( ORDENAR_NOMBRE );
         comboOrdenamiento.addItem( ORDENAR_ANHO );
@@ -144,7 +151,7 @@ public class PanelOpciones extends JPanel implements ActionListener
         aux2.setLayout( new GridLayout( 1, 2 ) );
         aux2.setBorder( new CompoundBorder( new EmptyBorder( 0, 10, 0, 10 ), new TitledBorder( "Buscar" ) ) );
 
-        comboBusqueda = new JComboBox( );
+        comboBusqueda = new JComboBox<String>( );
         comboBusqueda.setBorder( new EmptyBorder( 0, 0, 0, 10 ) );
         comboBusqueda.addItem( BUSCAR_NOMBRE );
         comboBusqueda.addItem( BUSCAR_TIPO );
@@ -172,7 +179,11 @@ public class PanelOpciones extends JPanel implements ActionListener
             String ordenamiento = ( String )comboOrdenamiento.getSelectedItem( );
             if( ordenamiento.equals( ORDENAR_NOMBRE ) )
             {
-                principal.ordenarPorNombre( );
+                try {
+					principal.ordenarPorNombre( );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
             else if( ordenamiento.equals( ORDENAR_ANHO ) )
             {
@@ -188,19 +199,35 @@ public class PanelOpciones extends JPanel implements ActionListener
             String busqueda = ( String )comboBusqueda.getSelectedItem( );
             if( busqueda.equals( BUSCAR_NOMBRE ) )
             {
-                principal.buscarPorNombre( );
+                try {
+					principal.buscarPorNombre( );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
             else if( busqueda.equals( BUSCAR_TIPO ) )
             {
-                principal.buscarPorTipo( );
+                try {
+					principal.buscarPorTipo( );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
             else if( busqueda.equals( BUSCAR_MAS_DULCE ) )
             {
-                principal.buscarVinoMasDulce( );
+                try {
+					principal.buscarVinoMasDulce( );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
             else if( busqueda.equals( BUSCAR_MAS_SECO ) )
             {
-                principal.buscarVinoMasSeco( );
+                try {
+					principal.buscarVinoMasSeco( );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
         }
     }

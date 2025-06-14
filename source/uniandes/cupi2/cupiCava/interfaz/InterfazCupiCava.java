@@ -200,7 +200,7 @@ public class InterfazCupiCava extends JFrame
      */
     private void actualizarLista( )
     {
-        ArrayList vinos = new ArrayList( );
+        ArrayList<String> vinos = new ArrayList<String>( );
         for( int i = 0; i < cupiCava.darVinos( ).size( ); i++ )
         {
             Vino actual = ( Vino )cupiCava.darVinos( ).get( i );
@@ -224,7 +224,7 @@ public class InterfazCupiCava extends JFrame
     /**
      * Ordena la lista de vinos por nombre.
      */
-    public void ordenarPorNombre( )
+    public void ordenarPorNombre( ) throws Exception
     {
         cupiCava.ordenarVinosPorNombre( );
         actualizarLista( );
@@ -252,7 +252,7 @@ public class InterfazCupiCava extends JFrame
     /**
      * Busca el vino por el nombre dado por el usuario.
      */
-    public void buscarPorNombre( )
+    public void buscarPorNombre( ) throws Exception
     {
         String nombre = JOptionPane.showInputDialog( null, "Nombre: ", "Buscar vino por nombre", JOptionPane.QUESTION_MESSAGE );
         if( nombre != null && !nombre.isEmpty( ) )
@@ -274,15 +274,15 @@ public class InterfazCupiCava extends JFrame
     /**
      * Busca los vinos con el tipo dado por el usuario.
      */
-    public void buscarPorTipo( )
+    public void buscarPorTipo( ) throws Exception
     {
         String[] tipos = new String[]{ Vino.SECO, Vino.ABOCADO, Vino.SEMI_SECO, Vino.SEMI_DULCE, Vino.DULCE };
         String tipo = ( String )JOptionPane.showInputDialog( null, "Tipo: ", "Buscar vinos de un tipo", JOptionPane.QUESTION_MESSAGE, null, tipos, Vino.SECO );
         if( tipo != null )
         {
 
-            ArrayList vinosTipo = cupiCava.buscarVinosDeTipo( tipo );
-            ArrayList vinos = new ArrayList( );
+            ArrayList<Vino> vinosTipo = cupiCava.buscarVinosDeTipo( tipo );
+            ArrayList<String> vinos = new ArrayList<String>( );
             for( int i = 0; i < vinosTipo.size( ); i++ )
             {
                 Vino actual = ( Vino ) vinosTipo.get( i );
@@ -296,7 +296,7 @@ public class InterfazCupiCava extends JFrame
     /**
      * Busca el vino más dulce.
      */
-    public void buscarVinoMasDulce( )
+    public void buscarVinoMasDulce( ) throws Exception
     {
         Vino vino = cupiCava.buscarVinoMasDulce( );
         if( vino != null )
@@ -313,7 +313,7 @@ public class InterfazCupiCava extends JFrame
     /**
      * Busca el vino más seco.
      */
-    public void buscarVinoMasSeco( )
+    public void buscarVinoMasSeco( ) throws Exception
     {
         Vino vino = cupiCava.buscarVinoMasSeco( );
         if( vino != null )

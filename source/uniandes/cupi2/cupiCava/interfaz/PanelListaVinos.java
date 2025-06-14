@@ -62,13 +62,12 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     /**
      * Lista de los vinos.
      */
-    // TODO Parte3 PuntoA: Declare el atributo listaVinos de tipo JList.
     private JList<String> listaVinos;
     
     /**
      * Modelo para la lista de vinos, facilita la adición y eliminación de elementos.
      */
-    private DefaultListModel<String> modeloListaVinos; // Nuevo atributo para el modelo de la lista
+    private DefaultListModel<String> modeloListaVinos;
 
     /**
      * Panel con un scroll que contiene a listaVinos.
@@ -95,14 +94,13 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
         setLayout( new BorderLayout( ) );
         setBorder( new CompoundBorder( new EmptyBorder( 0, 5, 0, 5 ), new TitledBorder( "Lista de vinos" ) ) );
         setPreferredSize( new Dimension( 250, 0 ) );
-
-        // TODO Parte3 PuntoB: Inicializar la lista de vinos y agregarle un ListSelectionListener
+        
+        modeloListaVinos = new DefaultListModel<>(); // Inicializar el modelo
         listaVinos = new JList<>();
         listaVinos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaVinos.addListSelectionListener(this);
         
 
-     // TODO Parte3 PuntoC: Inicializar el scroll.
         scroll = new JScrollPane(listaVinos);
         scroll.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
@@ -126,11 +124,17 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      */
     public void refrescarLista( ArrayList<String> pListaVinos )
     {
+        // Limpiar el modelo actual
         modeloListaVinos.clear();
+        // Añadir todos los elementos de la lista recibida al modelo
         for (Object vino : pListaVinos) {
+            // Se asume que los objetos en pListaVinos tienen un método toString adecuado
+            // o que necesitas castearlos a la clase Vino y obtener su nombre/representación.
+            // Para simplificar, asumimos que ya son Strings o se pueden convertir directamente.
             modeloListaVinos.addElement(vino.toString()); 
         }
         
+        // Si la lista no está vacía, seleccionar el primer elemento.
         if( !pListaVinos.isEmpty( ) )
         {
             listaVinos.setSelectedIndex( 0 );

@@ -113,6 +113,7 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al nombre.<br>
      * 2. El vino1 es menor al vino2 con respecto al nombre.<br>
      * 3. El vino3 es mayor al vino2 con respecto al nombre.
+     * @throws Exception 
      */
     @Test
     public void testCompararPorNombre( ) throws Exception
@@ -131,6 +132,7 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto a la presentación.<br>
      * 2. El vino1 es menor al vino2 con respecto a la presentación.<br>
      * 3. El vino3 es igual al vino1 con respecto a la presentación.
+     * @throws Exception 
      */
     public void testCompararPorPresentacion( ) throws Exception
     {
@@ -148,6 +150,7 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al año de elaboración.<br>
      * 2. El vino1 es menor al vino2 con respecto al año de elaboración.<br>
      * 3. El vino3 es igual al vino1 con respecto al año de elaboración.
+     * @throws Exception 
      */
     public void testCompararPorAnhoElaboracion( ) throws Exception
     {
@@ -165,6 +168,7 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al contenido en azúcar.<br>
      * 2. El vino1 es menor al vino2 con respecto al contenido en azúcar.<br>
      * 3. El vino3 es igual al vino1 con respecto al contenido en azúcar.
+     * @throws Exception 
      */
     public void testCompararPorContenidoAzucar( ) throws Exception
     {
@@ -182,6 +186,7 @@ public class VinoTest
      * 1. El vino1 es igual al vino4 con respecto al tipo.<br>
      * 2. El vino1 es menor al vino2 con respecto al tipo.<br>
      * 3. El vino3 es igual al vino1 con respecto al tipo.
+     * @throws Exception 
      */
     public void testCompararPorTipo( ) throws Exception
     {
