@@ -17,11 +17,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -38,10 +38,12 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
+	
+	private static final long serialVersionUID = 1L;
 
     /**
      * Constante que representa el comando de agregar un vino.
-     */
+     */	
     private final static String AGREGAR = "Agregar";
 
     // -----------------------------------------------------------------
@@ -61,6 +63,12 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      * Lista de los vinos.
      */
     // TODO Parte3 PuntoA: Declare el atributo listaVinos de tipo JList.
+    private JList<String> listaVinos;
+    
+    /**
+     * Modelo para la lista de vinos, facilita la adición y eliminación de elementos.
+     */
+    private DefaultListModel<String> modeloListaVinos; // Nuevo atributo para el modelo de la lista
 
     /**
      * Panel con un scroll que contiene a listaVinos.
@@ -89,9 +97,13 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
         setPreferredSize( new Dimension( 250, 0 ) );
 
         // TODO Parte3 PuntoB: Inicializar la lista de vinos y agregarle un ListSelectionListener
+        listaVinos = new JList<>();
+        listaVinos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaVinos.addListSelectionListener(this);
         
 
      // TODO Parte3 PuntoC: Inicializar el scroll.
+        scroll = new JScrollPane(listaVinos);
         scroll.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
         scroll.setBorder( new CompoundBorder( new EmptyBorder( 3, 3, 3, 3 ), new LineBorder( Color.BLACK, 1 ) ) );
@@ -112,9 +124,19 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      * Actualiza la lista de vinos con la lista recibida por parámetro.
      * @param pListaVinos Lista de los vinos. pListaVinos != null.
      */
-    public void refrescarLista( ArrayList pListaVinos )
+    public void refrescarLista( ArrayList<String> pListaVinos )
     {
-        listaVinos.setListData( pListaVinos.toArray( ) );
+        // Limpiar el modelo actual
+        modeloListaVinos.clear();
+        // Añadir todos los elementos de la lista recibida al modelo
+        for (Object vino : pListaVinos) {
+            // Se asume que los objetos en pListaVinos tienen un método toString adecuado
+            // o que necesitas castearlos a la clase Vino y obtener su nombre/representación.
+            // Para simplificar, asumimos que ya son Strings o se pueden convertir directamente.
+            modeloListaVinos.addElement(vino.toString()); 
+        }
+        
+        // Si la lista no está vacía, seleccionar el primer elemento.
         if( !pListaVinos.isEmpty( ) )
         {
             listaVinos.setSelectedIndex( 0 );
@@ -125,16 +147,17 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      * Actualiza el vino seleccionado.
      * @param pNombreVino Nombre del vino seleccionado. pNombreVino != null && pNombreVino != "".
      */
-    public void seleccionar( String pNombreVino )
+    public void seleccionar( String nombreVino )
     {
         int indice = -1;
-        ListModel model = listaVinos.getModel( );
-        for( int i = 0; i < model.getSize( ); i++ )
+        // Iterar sobre el modelo de la lista para encontrar el índice
+        for( int i = 0; i < modeloListaVinos.getSize( ); i++ )
         {
-            String vinoActual = ( String )model.getElementAt( i );
-            if( vinoActual.equals( pNombreVino ) )
+            String vinoActual = modeloListaVinos.getElementAt( i );
+            if( vinoActual.equals( nombreVino ) )
             {
                 indice = i;
+                break; // Encontrado, salir del bucle
             }
         }
 
@@ -148,10 +171,13 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      */
     public void valueChanged( ListSelectionEvent pEvento )
     {
-        if( listaVinos.getSelectedValue( ) != null )
-        {
-            String nombreVino = ( String )listaVinos.getSelectedValue( );
-            principal.actualizarInfoVino( nombreVino );
+        // Solo procesar el evento cuando la selección ha terminado de ajustarse
+        if ( !pEvento.getValueIsAdjusting() ) {
+            if( listaVinos.getSelectedValue( ) != null )
+            {
+                String nombreVino = listaVinos.getSelectedValue( ); // No necesita casting si JList es de tipo <String>
+                principal.actualizarInfoVino( nombreVino );
+            }
         }
     }
 
