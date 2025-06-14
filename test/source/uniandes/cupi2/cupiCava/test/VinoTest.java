@@ -115,7 +115,7 @@ public class VinoTest
      * 3. El vino3 es mayor al vino2 con respecto al nombre.
      */
     @Test
-    public void testCompararPorNombre( )
+    public void testCompararPorNombre( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los nombres son iguales.", 0, vino1.compararPorNombre( vino4 ) );
@@ -132,7 +132,7 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto a la presentación.<br>
      * 3. El vino3 es igual al vino1 con respecto a la presentación.
      */
-    public void testCompararPorPresentacion( )
+    public void testCompararPorPresentacion( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque las presentaciones son iguales.", 0, vino1.compararPorPresentacion( vino4 ) );
@@ -149,7 +149,7 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto al año de elaboración.<br>
      * 3. El vino3 es igual al vino1 con respecto al año de elaboración.
      */
-    public void testCompararPorAnhoElaboracion( )
+    public void testCompararPorAnhoElaboracion( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los años de elaboración son iguales.", 0, vino1.compararPorAnhoElaboracion( vino4 ) );
@@ -166,7 +166,7 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto al contenido en azúcar.<br>
      * 3. El vino3 es igual al vino1 con respecto al contenido en azúcar.
      */
-    public void testCompararPorContenidoAzucar( )
+    public void testCompararPorContenidoAzucar( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los contenidos en azúcar son iguales.", 0, vino1.compararPorContenidoAzucar( vino4 ) );
@@ -183,7 +183,7 @@ public class VinoTest
      * 2. El vino1 es menor al vino2 con respecto al tipo.<br>
      * 3. El vino3 es igual al vino1 con respecto al tipo.
      */
-    public void testCompararPorTipo( )
+    public void testCompararPorTipo( ) throws Exception
     {
 
         assertEquals( "La comparación debería tener como resultado 0 porque los tipos son iguales.", 0, vino1.compararPorTipo( vino4 ) );
