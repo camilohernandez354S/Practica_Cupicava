@@ -34,6 +34,8 @@ public class InterfazCupiCava extends JFrame
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
+	
+	private static final long serialVersionUID = 1L;
 
     /**
      * Constante que representa la ubicación del archivo con los datos de los vinos de la cava.
@@ -120,6 +122,7 @@ public class InterfazCupiCava extends JFrame
 
         actualizarLista( );
     }
+
 
     // -----------------------------------------------------------------
     // Métodos

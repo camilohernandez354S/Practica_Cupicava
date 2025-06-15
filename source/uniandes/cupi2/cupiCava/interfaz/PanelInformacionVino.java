@@ -29,6 +29,8 @@ public class PanelInformacionVino extends JPanel
     // -----------------------------------------------------------------
     // Atributos de la interfaz
     // -----------------------------------------------------------------
+	
+	private static final long serialVersionUID = 1L;
 
     /**
      * Campo de texto con el nombre del vino.

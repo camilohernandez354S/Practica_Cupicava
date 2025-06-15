@@ -201,6 +201,7 @@ public class CupiCavaTest
      * darVinos<br>
      * <b> Casos de prueba:</b><br>
      * 1. Los vinos no están ordenados.<br>
+     * @throws Exception 
      */
     @Test
     public void testOrdenarVinosPorNombre( ) throws Exception
@@ -227,6 +228,7 @@ public class CupiCavaTest
      * darVinos<br>
      * <b> Casos de prueba:</b><br>
      * 1. Los vinos no están ordenados.<br>
+     * @throws Exception 
      */
     @Test
     public void testOrdenarPorAnhoElaboracion( ) throws Exception
@@ -280,6 +282,7 @@ public class CupiCavaTest
      * <b> Casos de prueba:</b><br>
      * 1. El vino existe.<br>
      * 2. El vino no existe.<br>
+     * @throws Exception 
      */
     @Test
     public void testBuscarBinarioPorNombre( ) throws Exception
@@ -300,6 +303,7 @@ public class CupiCavaTest
      * darNombre<br>
      * <b> Casos de prueba:</b><br>
      * 1. El vino más dulce existe.<br>
+     * @throws Exception 
      */
     @Test
     public void testBuscarVinoMasDulce( ) throws Exception
@@ -319,6 +323,7 @@ public class CupiCavaTest
      * darNombre<br>
      * <b> Casos de prueba:</b><br>
      * 1. El vino más seco existe.<br>
+     * @throws Exception 
      */
     @Test
     public void testBuscarVinoMasSeco( ) throws Exception
@@ -337,6 +342,7 @@ public class CupiCavaTest
      * darTipo<br>
      * <b> Casos de prueba:</b><br>
      * 1. Existen vinos con el tipo dado.<br>
+     * @throws Exception 
      */
     @Test
     public void testBuscarVinosDeTipo( ) throws Exception

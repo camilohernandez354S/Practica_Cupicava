@@ -27,6 +27,8 @@ public class PanelExtension extends JPanel implements ActionListener
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
+	
+	private static final long serialVersionUID = 1L;
 
     /**
      * Constante que representa el comando de opción 1.

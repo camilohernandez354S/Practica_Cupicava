@@ -22,6 +22,8 @@ public class PanelImagen extends JPanel
     // -----------------------------------------------------------------
     // Constructores
     // -----------------------------------------------------------------
+	
+	private static final long serialVersionUID = 1L;
 
     /**
      * Constructor del panel.
